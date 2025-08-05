@@ -1,2 +1,2 @@
-import './Components/Light/index.js';
+import './Components/Vertex/index.js';
 import './style.css';
