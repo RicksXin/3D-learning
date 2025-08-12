@@ -1,2 +1,2 @@
-import './Components/Vertex/index.js';
+import './Components/LinearColor/index.js';
 import './style.css';
