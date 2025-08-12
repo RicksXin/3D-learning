@@ -1,2 +1,2 @@
-import './Components/LinearColor/index.js';
+import './Components/Gltf/index.js';
 import './style.css';
