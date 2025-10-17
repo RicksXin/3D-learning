@@ -3,47 +3,54 @@ import {
     OrbitControls
 } from 'three/addons/controls/OrbitControls.js';
 import mesh from './mesh.js';
-
 export function mount(stage) {
   const container = stage || document.body;
   const rect = container.getBoundingClientRect();
-
   const scene = new THREE.Scene();
+
   scene.add(mesh);
 
-  const directionLight = new THREE.DirectionalLight(0xffffff, 2);
-  directionLight.position.set(500, 400, 300);
-  scene.add(directionLight);
+  const light = new THREE.DirectionalLight(0xffffff);
+  light.position.set(500, 300, 600);
+  scene.add(light);
 
-  const ambientLight = new THREE.AmbientLight();
-  scene.add(ambientLight);
+  const light2 = new THREE.AmbientLight();
+  scene.add(light2);
 
-  let width = rect.width;
-  let height = rect.height;
+  const axesHelper = new THREE.AxesHelper(1000);
+  scene.add(axesHelper);
 
-  // const helper = new THREE.AxesHelper(500);
-  // scene.add(helper);
+  const width = rect.width;
+  const height = rect.height;
 
-  const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-  camera.position.set(30, 0, 240);
+  const camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
+  camera.position.set(0, 200, 600);
   camera.lookAt(0, 0, 0);
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true
   });
   renderer.setSize(width, height)
+  const controls = new OrbitControls(camera, renderer.domElement);
 
-  let rafId = 0;
+  controls.enableDamping = true
+
   function render() {
-      renderer.render(scene, camera);
-      rafId = requestAnimationFrame(render);
+    controls.update()
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    mesh.children.forEach((item, index) => {
+      const flag = index % 2 === 0 ? 1 : -1;
+      item.rotation.z += 0.0003 * index * flag;
+    })
   }
+
 
   render();
 
   container.append(renderer.domElement);
 
-  const controls = new OrbitControls(camera, renderer.domElement);
+
 
   function onResize() {
     const r = container.getBoundingClientRect();

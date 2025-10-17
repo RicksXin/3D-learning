@@ -4,10 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>3D Cases</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <aside class="sidebar">
+        <div class="sidebar__title">Cases</div>
+        <nav class="sidebar__nav">
+          <a href="?case=gltf" data-case="gltf" class="sidebar__link">GLTF Loader</a>
+          <a href="?case=barchart" data-case="barchart" class="sidebar__link">Bar Chart</a>
+          <a href="?case=cloudspace" data-case="cloudspace" class="sidebar__link">云雷纹</a>
+          <a href="?case=clickbox" data-case="clickbox" class="sidebar__link">点击特效</a>
+        </nav>
+      </aside>
+      <main id="stage" class="stage"></main>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
