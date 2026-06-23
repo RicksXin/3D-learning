@@ -3,7 +3,7 @@ import * as THREE from 'three';
 function createMesh(color, x) {
     const geometry = new THREE.DodecahedronGeometry(100);
     const material = new THREE.MeshPhongMaterial({
-        color: color
+        color: color,
     });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = x;
@@ -20,4 +20,3 @@ group.add(mesh2);
 group.add(mesh3);
 
 export default group;
-
