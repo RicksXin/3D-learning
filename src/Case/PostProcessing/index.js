@@ -20,8 +20,8 @@ export function mount(stage) {
   const ambientLight = new THREE.AmbientLight(0xffffff);
   scene.add(ambientLight);
 
-  const width = rect.width;
-  const height = rect.height;
+  let width = rect.width;
+  let height = rect.height;
   const camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
   camera.position.set(0, 500, 500);
   camera.lookAt(0, 0, 0);
@@ -37,10 +37,11 @@ export function mount(stage) {
   const outlinePass = new OutlinePass(v, scene, camera);
   composer.addPass(outlinePass);
 
+  let rafId = 0;
   function render() {
     composer.render();
     // renderer.render(scene, camera);
-    requestAnimationFrame(render);
+    rafId = requestAnimationFrame(render);
   }
 
   render();

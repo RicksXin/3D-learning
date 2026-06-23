@@ -20,8 +20,8 @@ export function mount (stage) {
   const ambientLight = new THREE.AmbientLight(0xffffff);
   scene.add(ambientLight);
 
-  const width = rect.width;
-  const height = rect.height;
+  let width = rect.width;
+  let height = rect.height;
 
   const camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
   camera.position.set(500, 500, 500);
@@ -32,9 +32,10 @@ export function mount (stage) {
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
+  let rafId = 0;
   function render() {
       renderer.render(scene, camera);
-      requestAnimationFrame(render);
+      rafId = requestAnimationFrame(render);
   }
 
   render();

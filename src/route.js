@@ -5,4 +5,5 @@ export const caseLoaders = {
   cloudspace: () => import('./Case/CloudSpace/index.js'),
   clickbox: () => import('./Case/ClickBox/index.js'),
   postprocessing: () => import('./Case/PostProcessing/index.js'),
+  openworld: () => import('./Case/OpenWorld/index.js'),
 };

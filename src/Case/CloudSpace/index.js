@@ -20,8 +20,8 @@ export function mount(stage) {
   const axesHelper = new THREE.AxesHelper(1000);
   scene.add(axesHelper);
 
-  const width = rect.width;
-  const height = rect.height;
+  let width = rect.width;
+  let height = rect.height;
 
   const camera = new THREE.PerspectiveCamera(60, width / height, 1, 10000);
   camera.position.set(0, 200, 600);
@@ -35,10 +35,11 @@ export function mount(stage) {
 
   controls.enableDamping = true
 
+  let rafId = 0;
   function render() {
     controls.update()
     renderer.render(scene, camera);
-    requestAnimationFrame(render);
+    rafId = requestAnimationFrame(render);
     mesh.children.forEach((item, index) => {
       const flag = index % 2 === 0 ? 1 : -1;
       item.rotation.z += 0.0003 * index * flag;
