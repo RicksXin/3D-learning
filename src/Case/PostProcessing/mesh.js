@@ -7,7 +7,7 @@ function createMesh(color, x) {
     });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = x;
-    return mesh;    
+    return mesh;
 }
 
 const mesh = createMesh('orange', 0);
